@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Title</title>
+
+</head>
+<body>
+<h3>查看书籍</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <a href="/books/add/" class="btn btn-primary btn-sm">添加书籍</a>
+            <table class="table table-hover table-striped small">
+                <thead >
+                <tr>
+                    <th>
+                        名称
+                    </th>
+                    <th>
+                        价格
+                    </th>
+                    <th>
+                        出版日期
+                    </th>
+                    <th>
+                        出版社
+                    </th>
+                    <th>
+                        是否出版
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book in book_list %}
+                    <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.price }}</td>
+                    <td>{{ book.pub_date|date:"Y-m-d" }}</td>
+                    <td>{{ book.publish }}</td>
+                    <td>
+                        {% if book.is_pub %}
+                            已出版
+                        {% else %}
+                            未出版
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/delete/{{ book.nid }}" class="btn btn-danger btn-sm">删除</a>
+                    </td>
+                    <td><a href="/change/{{ book.nid }}" class="btn btn-info btn-sm">编辑</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
